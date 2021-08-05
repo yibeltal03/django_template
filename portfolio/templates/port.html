@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Landing page</h1>
+
+    {% load static %}
+
+    <a href="{% url 'blog:all_blogs' %}">Blog</a>
+   <br>
+   <a href="{% static 'port/resume.pdf' %}">Resume</a>
+   <br>
+   <div class="row justify-content-center my-3">
+    <div class="col-5">
+        <img src="{% static 'port/image0.jpeg' %}" height = 20 class="img-fluid">
+
+    </div>
+
+   </div>
+    
+    {% for project in projects %}
+
+    <h1> {{ project.title }} </h1>
+    <h3>{{ project.description }}</h3>
+    <img src ="{{ project.image.url }}" height=300, width=300>
+    <br>
+
+    {% if project.url %}
+    <a href= "{{ project.url }}"> LINK</a>
+    {% endif %}
+
+    {% endfor %}
+
+{% endblock %}
